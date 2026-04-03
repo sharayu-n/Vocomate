@@ -1,13 +1,90 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model User {
+  id               String            @id @default(cuid())
+  name             String?
+  email            String?           @unique
+  practiceSessions PracticeSession[]
+  interviewSessions InterviewSession[]
+  savedVocabulary  SavedVocabulary[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+}
+
+model PracticeSession {
+  id             String            @id @default(cuid())
+  userId         String
+  user           User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type           String            // 'speech', 'introduction', 'monologue', 'free'
+  duration       Int               // in seconds
+  overallScore   Int?
+  transcript     String?           // Combined transcript
+  scoreBreakdown ScoreBreakdown?
+  aiFeedback     AIFeedback?
+  
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+}
+
+model ScoreBreakdown {
+  id             String          @id @default(cuid())
+  sessionId      String          @unique
+  session        PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  clarity        Int
+  pace           Int
+  confidence     Int
+}
+
+model AIFeedback {
+  id                 String          @id @default(cuid())
+  sessionId          String          @unique
+  session            PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  strengths          String[]
+  improvements       String[]
+  fillerWords        String[]
+  paceAnalysis       String
+  confidenceAnalysis String
+}
+
+model InterviewSession {
+  id             String          @id @default(cuid())
+  userId         String
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category       String          // 'behavioral', 'product', 'business', 'technical'
+  overallScore   Int?
+  feedback       String?
+  qas            InterviewQA[]
+  
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model InterviewQA {
+  id             String          @id @default(cuid())
+  sessionId      String
+  session        InterviewSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question       String
+  answer         String
+  score          Int?
+  feedback       String?
+  improvedAnswer String?
+  createdAt      DateTime        @default(now())
+}
+
+model SavedVocabulary {
+  id             String    @id @default(cuid())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  originalWord   String
+  suggestedWord  String
+  meaning        String
+  examples       String[]
+  
+  createdAt      DateTime  @default(now())
 }

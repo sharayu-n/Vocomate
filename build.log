@@ -1,0 +1,66 @@
+
+> web@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+Error: Can't resolve 'tailwindcss-animate' in '/Users/sharayu/Desktop/Vocomate /web/src/app'
+    [2m[at finishWithoutResolve (/Users/sharayu/Desktop/Vocomate /web/node_modules/enhanced-resolve/lib/Resolver.js:587:18)][0m
+    [2m[at /Users/sharayu/Desktop/Vocomate /web/node_modules/enhanced-resolve/lib/Resolver.js:679:14][0m
+    [2m[at /Users/sharayu/Desktop/Vocomate /web/node_modules/enhanced-resolve/lib/Resolver.js:740:5][0m
+    [2m[at eval (eval at create (/Users/sharayu/Desktop/Vocomate /web/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at /Users/sharayu/Desktop/Vocomate /web/node_modules/enhanced-resolve/lib/Resolver.js:740:5][0m
+    [2m[at eval (eval at create (/Users/sharayu/Desktop/Vocomate /web/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:27:1)][0m
+    [2m[at /Users/sharayu/Desktop/Vocomate /web/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:89:43][0m
+    [2m[at /Users/sharayu/Desktop/Vocomate /web/node_modules/enhanced-resolve/lib/Resolver.js:740:5][0m
+    [2m[at eval (eval at create (/Users/sharayu/Desktop/Vocomate /web/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at /Users/sharayu/Desktop/Vocomate /web/node_modules/enhanced-resolve/lib/Resolver.js:740:5][0m {
+  details: "resolve 'tailwindcss-animate' in '/Users/sharayu/Desktop/Vocomate /web/src/app'\n" +
+    '  Parsed request is a module\n' +
+    '  using description file: /Users/sharayu/Desktop/Vocomate /web/package.json (relative path: ./src/app)\n' +
+    '    resolve as module\n' +
+    "      /Users/sharayu/Desktop/Vocomate /web/src/app/node_modules doesn't exist or is not a directory\n" +
+    "      /Users/sharayu/Desktop/Vocomate /web/src/node_modules doesn't exist or is not a directory\n" +
+    '      looking for modules in /Users/sharayu/Desktop/Vocomate /web/node_modules\n' +
+    '        single file module\n' +
+    '          using description file: /Users/sharayu/Desktop/Vocomate /web/package.json (relative path: ./node_modules/tailwindcss-animate)\n' +
+    '            no extension\n' +
+    "              /Users/sharayu/Desktop/Vocomate /web/node_modules/tailwindcss-animate doesn't exist\n" +
+    '            .js\n' +
+    "              /Users/sharayu/Desktop/Vocomate /web/node_modules/tailwindcss-animate.js doesn't exist\n" +
+    '            .json\n' +
+    "              /Users/sharayu/Desktop/Vocomate /web/node_modules/tailwindcss-animate.json doesn't exist\n" +
+    '            .node\n' +
+    "              /Users/sharayu/Desktop/Vocomate /web/node_modules/tailwindcss-animate.node doesn't exist\n" +
+    '            .ts\n' +
+    "              /Users/sharayu/Desktop/Vocomate /web/node_modules/tailwindcss-animate.ts doesn't exist\n" +
+    "        /Users/sharayu/Desktop/Vocomate /web/node_modules/tailwindcss-animate doesn't exist\n" +
+    "      /Users/sharayu/Desktop/Vocomate /node_modules doesn't exist or is not a directory\n" +
+    "      /Users/sharayu/Desktop/node_modules doesn't exist or is not a directory\n" +
+    "      /Users/sharayu/node_modules doesn't exist or is not a directory\n" +
+    "      /Users/node_modules doesn't exist or is not a directory\n" +
+    "      /node_modules doesn't exist or is not a directory"
+}
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /Users/sharayu/Desktop/Vocomate /web/src/app/globals.css:1:1: Can't resolve 'tailwindcss-animate' in '/Users/sharayu/Desktop/Vocomate /web/src/app'
+    at Input.error (node_modules/postcss/lib/input.js:135:16) [/Users/sharayu/Desktop/Vocomate /web/.next/build/chunks/node_modules_13sb.px._.js:4651:22]
+    at error (node_modules/postcss/lib/node.js:146:32) [/Users/sharayu/Desktop/Vocomate /web/.next/build/chunks/node_modules_13sb.px._.js:928:38]
+    [at Object.Once (/Users/sharayu/Desktop/Vocomate /web/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    at async LazyResult.runAsync (node_modules/postcss/lib/lazy-result.js:293:11) [/Users/sharayu/Desktop/Vocomate /web/.next/build/chunks/node_modules_13sb.px._.js:6214:21]
+    at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34) [/Users/sharayu/Desktop/Vocomate /web/.next/build/chunks/[root-of-the-server]__0d-m0h0._.js:146:36]
+    at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23) [/Users/sharayu/Desktop/Vocomate /web/.next/build/chunks/[root-of-the-server]__0ubbtyl._.js:443:31]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+    at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34) [/Users/sharayu/Desktop/Vocomate /web/.next/build/chunks/[root-of-the-server]__0d-m0h0._.js:146:36])
+    at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23) [/Users/sharayu/Desktop/Vocomate /web/.next/build/chunks/[root-of-the-server]__0ubbtyl._.js:443:31])
