@@ -1,70 +1,94 @@
-# VocoMate
+# 🎤 VocoMate – AI Speech Training Platform
 
-An AI speech training platform for interview preparation, speech practice, and vocabulary improvement.
+VocoMate is an AI-powered speech training platform designed to help users improve their speaking skills through real-time feedback, mock interviews, and vocabulary enhancement.
 
-## Features
+It enables users to practice speeches, prepare for interviews, and refine communication skills with live AI coaching.
 
-- **Train Mode**: Live real-time speech analytics and feedback
-- **Interview Mode**: Dynamic mock interview bot simulating behavioral and technical questions
-- **Vocabulary Lab**: Advanced terminology alternative suggestions 
-- **Profile Dashboard**: Recharts-based history and trends
+---
 
-## Tech Stack
+## 🚀 Features
 
-- **Framework**: Next.js 15 App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4 & shadcn/ui components
-- **Persistence**: Prisma ORM + PostgreSQL (Fallback mode supported natively)
-- **Speech Parsing**: Local browser Web Speech API implementation (No server bills, 100% private)
-- **Charts**: Recharts
+### 🧠 Train Mode
+- Live speech-to-text transcription
+- Real-time feedback on:
+  - Clarity
+  - Pace
+  - Confidence
+- AI coaching suggestions during speech
+- Post-session analysis with actionable insights
 
-## Setup & Local Development
+### 🎯 Interview Mode
+- AI-driven mock interviews
+- Dynamic follow-up questions
+- Performance scoring:
+  - Relevance
+  - Structure
+  - Confidence
+- Detailed feedback and improved answer suggestions
 
-This app is designed to run purely locally out-of-the-box. We have integrated graceful fallbacks so the app works flawlessly on your machine without needing to connect any databases immediately. 
+### 📚 Vocabulary Mode
+- Detects basic/common words in speech
+- Suggests advanced alternatives
+- Word of the Day feature
+- Save and track learned vocabulary
 
-### Prerequisites
+### 📊 Profile & Progress
+- Track speaking performance over time
+- View session history
+- Analyze trends in clarity, pace, and confidence
+- Monitor consistency and improvement
 
-- Node.js >= 18
-- (Optional) PostgreSQL database url if you wish to persist real data
+---
 
-### Installation Steps
+## 🖼️ Screenshots
 
-1. Install all dependencies:
-\`\`\`bash
+### 🎤 Train Mode
+![Train Mode](./public/Train.png)
+
+### 📚 Vocabulary Lab
+![Vocabulary Mode](./public/Vocabulary.png)
+
+### 🤖 Interview
+![AI Coach](./public/Interview.png)
+
+### 🤖 Profile
+![AI Coach](./public/Profile.png)
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- Next.js (App Router)
+- React + TypeScript
+- Tailwind CSS
+- shadcn/ui
+
+**Backend**
+- Next.js API Routes / Server Actions
+- Node.js
+
+**Database**
+- PostgreSQL
+- Prisma ORM
+
+**AI & Speech**
+- Speech-to-Text (Whisper / Vosk)
+- OpenAI (feedback, scoring, interview simulation)
+
+---
+
+## 📦 Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/vocomate.git
+
+# Navigate into the project
+cd vocomate
+
+# Install dependencies
 npm install
-\`\`\`
 
-2. Define your environment values:
-We've included an example in `.env.example`.
-Create a `.env` file and define `DATABASE_URL`:
-\`\`\`bash
+# Setup environment variables
 cp .env.example .env
-\`\`\`
-> Note: If you don't supply a SQL database, the app automatically switches to *Fallback Mode*, simulating the database writes.
-
-3. *(Optional)* Generate DB and schemas (skipped automatically if you use Fallback mode):
-\`\`\`bash
-npx prisma generate
-npx prisma db push
-\`\`\`
-
-4. Run the development server
-\`\`\`bash
-npm run dev
-\`\`\`
-
-Go to \`http://localhost:3000\`.
-*Any test credentials (e.g. \`test@example.com\`, \`password123\`) will successfully log you into the demo dashboard!*
-
-## Architecture
-
-- **`src/app/`**: Next.js 15 server routes and API entry points.
-- **`src/components/`**: Clean separation of feature-based client components (train, interview, vocabulary, profile).
-- **`src/hooks/`**: Specialized `useSpeechRecognition` hooks handling generic abstractions.
-- **`src/app/actions.ts`**: Pure server-actions for executing DB mutations.
-
-## Extending Real AI
-
-To plug in a real LLM provider (e.g., OpenAI or Anthropic):
-- Check `src/components/train/TrainRecorder.tsx` strings. We simulate live AI pacing logic.
-- You can route the transcription from the local browser client (`transcript` var) to a `fetch('/api/ai')` call.
